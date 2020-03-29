@@ -10,30 +10,44 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  List<String> _products = ['Computador'];
+  List<String> _tarefas = ['Estudar'];
+  String value = "";
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(title: Center(child: Text('CDM - Tarefa A2.1'))),
         body: Column(children: [
+          
+          Container(
+              color: Colors.white,
+              child: TextField(
+                  decoration: InputDecoration(icon: Icon(Icons.event_note), hintText: 'Informe sua tarefa'),
+                    onChanged: (text) {
+                    value = text;
+                  },
+              )
+          ),
+          
+          
           Container(
               margin: EdgeInsets.all(20.0),
               child: Center(
                 child: RaisedButton(
                     onPressed: () {
                       setState(() {
-                        _products.add('Mouse');
+                          _tarefas.add(value);
                       });
                     },
                     child: Text(
-                      'Olá Mundo!',
+                      'Add Tarefa',
                       style: TextStyle(fontSize: 22),
                     )),
               )),
           Column(
-              children: _products
+              children: _tarefas
                   .map((element) => Card(
                         child: Column(
                           children: <Widget>[
@@ -53,3 +67,5 @@ class _MyAppState extends State<MyApp> {
     );
   }
 }
+
+
